@@ -3,20 +3,6 @@ import json
 from bottle import route, run, request, HTTPResponse, template, static_file
 # import RPi.GPIO as GPIO
 import atexit
-import datetime
-
-class Door:
-    def __init__(self):
-        self.is_open = False
-        self.was_open = False
-
-    def update(self):
-        self.is_open = False # 更新　ドア情報を取る関数作る
-        self.was_open = self.is_open
-        return [self.is_open != self.was_open, self.is_open]
-
-# ピン情報等々　初期値
-door = Door()
 
 @route('/static/:path#.+#', name='static')
 def static(path):
@@ -38,10 +24,10 @@ def getJson():
     r.set_header('Content-Type', 'application/json')
     return r
 
-# curl http://192.168.1.16:8080/getDoor
+"""# curl http://192.168.1.16:8080/getDoor
 @route('/getDoor', method='GET')
 def getDoor():
-    global door
+    #global door
     result = door.update()
     retBody = {
         "is_open": result[1],
@@ -49,7 +35,7 @@ def getDoor():
     }
     r = HTTPResponse(status=200, body=retBody)
     r.set_header('Content-Type', 'application/json')
-    return r
+    return r"""
 
 def main():
     print('Server Start')

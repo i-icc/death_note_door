@@ -1,6 +1,6 @@
-var SERVER_URL = "http://localhpst:8080/"
+/*var SERVER_URL = "http://127.0.0.1:8080/"
 
-setInterval(getDoor, 200)
+setInterval(getDoor, 1000)
 
 function getDoor() {
     callApi(SERVER_URL + "getDoor");
@@ -13,4 +13,4 @@ function callApi(url) {
         // レスポンスが返ってきた時の処理
       }
     xhr.send();
-}
+}*/
