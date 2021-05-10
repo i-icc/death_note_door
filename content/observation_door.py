@@ -18,7 +18,7 @@ class Door:
         result = self.is_open != self.was_open
         self.was_open = self.is_open
         print(result, self.is_open)
-        return [result, self.is_open,datetime.datetime,now]
+        return [result, self.is_open,datetime.datetime.now()]
 
 def observe():
     print('Observe Start')
