@@ -29,6 +29,9 @@ def observe():
         time.sleep(1)
         print("a")
 
+def main():
+    observe()
+
 def atExit():
     print("atExit")
     GPIO.cleanup()
