@@ -1,6 +1,7 @@
 import time
 import RPi.GPIO as GPIO
 import atexit
+import datetime
 
 GPIO.setmode(GPIO.BCM)
 
@@ -17,7 +18,7 @@ class Door:
         result = self.is_open != self.was_open
         self.was_open = self.is_open
         print(result, self.is_open)
-        return [result, self.is_open]
+        return [result, self.is_open,datetime.now()]
 
 def observe():
     print('Observe Start')
@@ -27,7 +28,6 @@ def observe():
         if result[0]:
             pass
         time.sleep(1)
-        print("a")
 
 def main():
     observe()
