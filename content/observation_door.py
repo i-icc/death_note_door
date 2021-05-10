@@ -17,8 +17,8 @@ class Door:
         self.is_open = GPIO.input(self.in_n) # 更新　ドア情報を取る関数作る
         result = self.is_open != self.was_open
         self.was_open = self.is_open
-        print(result, self.is_open)
-        return [result, self.is_open,datetime.datetime.now()]
+        print(result, self.is_open,datetime.datetime.now())
+        return [result, self.is_open]
 
 def observe():
     print('Observe Start')
