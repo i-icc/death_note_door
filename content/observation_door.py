@@ -19,7 +19,7 @@ class Door:
 
 def observe():
     print('Observe Start')
-    door = Door(12)
+    door = Door(17)
     while True:
         result = door.update()
         if result[0]:
