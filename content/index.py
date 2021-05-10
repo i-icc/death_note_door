@@ -1,7 +1,7 @@
 # coding: utf-8
 import json
 from bottle import route, run, request, HTTPResponse, template, static_file
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import atexit
 
 @route('/static/:path#.+#', name='static')
