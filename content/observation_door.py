@@ -1,5 +1,6 @@
 import time
 import RPi.GPIO as GPIO
+import atexit
 
 GPIO.setmode(GPIO.BCM)
 
