@@ -1,9 +1,15 @@
 import time
 import RPi.GPIO as GPIO
 import atexit
-import datetime
+import MySQLdb
 
 GPIO.setmode(GPIO.BCM)
+conn = MySQLdb.connect(
+user='i-icc',
+passwd='',
+host='localhost',
+db='door_log')
+cur = conn.cursor()
 
 class Door:
     def __init__(self, in_n):
@@ -17,7 +23,6 @@ class Door:
         self.is_open = GPIO.input(self.in_n) # 更新　ドア情報を取る関数作る
         result = self.is_open != self.was_open
         self.was_open = self.is_open
-        print(result, self.is_open,datetime.datetime.now())
         return [result, self.is_open]
 
 def observe():
@@ -26,7 +31,10 @@ def observe():
     while True:
         result = door.update()
         if result[0]:
-            pass
+            sql = f"INSERT INTO door_record(is_open) VALUES ('{result[1]}');"
+            cur.execute(sql)
+            conn.commit()
+            print(sql)
         time.sleep(1)
 
 def main():
@@ -36,6 +44,8 @@ def atExit():
     print('Observe Finish')
     print("atExit")
     GPIO.cleanup()
+    conn.close()
+    cur.close()
 
 if __name__ == '__main__':
     atexit.register(atExit)
