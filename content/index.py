@@ -26,11 +26,18 @@ def static(path):
 
 @route('/')
 def root():
-    return template("index")
+    n = request.query.get('n')
+    n = 5 if n is None else int(n)
+    r = json.loads(getJson(n))
+    #r = getJson(n)
+    return template("index",req=r)
+    #  return "<html><body>hello</body></html>"
 
 # curl http://192.168.1.16:8080/getR
 @route('/getJson', method='GET')
-def getJson(n):
+def getJson(n = 5):
+    n = request.query.get('n')
+    n = 5 if n is None else int(n)
     sql = f"SELECT * FROM door_record ORDER BY id DESC LIMIT {n};"
     cur = conn.cursor(MySQLdb.cursors.DictCursor)
     cur.execute(sql)

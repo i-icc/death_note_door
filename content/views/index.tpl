@@ -13,10 +13,22 @@
         <main>
         <h1>Door_Open_Log</h1>
         <div>
-            <h3>test</h3>
+            <h3>Logs</h3>
+		<table border="1">
+    		    <tr>
+      			<th>日付</th>
+			<th>ドア情報</th>
+    		    </tr>
+           	     % for log in req["log"]:
+		     <tr>
+	        	<td>{{ log["date_at"] }}</td>
+			<td>{{ log["is_open"] }}</td>
+		    </tr>
+	            % end
+		</table>
         </div>
         </main>
         <!-- load script files -->
-        <script type="text/javascript" src="static/js/caller.js" charset="utf-8"></script>
+        <!-- script type="text/javascript" src="static/js/caller.js" charset="utf-8"></script -->
     </body>
 </html>
