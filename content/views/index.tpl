@@ -22,7 +22,11 @@
            	     % for log in req["log"]:
 		     <tr>
 	        	<td>{{ log["date_at"] }}</td>
-			<td>{{ log["is_open"] }}</td>
+			% if log["is_open"] == 1:
+			<td>open</td>
+			% else:
+			<td>close</td>
+			% end
 		    </tr>
 	            % end
 		</table>

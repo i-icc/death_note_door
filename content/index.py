@@ -4,6 +4,7 @@ from bottle import route, run, request, HTTPResponse, template, static_file
 import atexit
 import MySQLdb
 import json
+import os
 
 from datetime import datetime, date, timedelta
 
@@ -54,6 +55,7 @@ def main():
     print('Server Start')
     run(host='0.0.0.0', port=8080, debug=True, reloader=True)
     # run(host='0.0.0.0', port=8080, debug=False, reloader=False)
+    #run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
 def atExit():
     print("atExit")
