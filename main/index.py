@@ -15,20 +15,10 @@ def json_serial(obj):
         return str(obj)
     raise TypeError("Type %s not serializable" % type(obj))
 
-<<<<<<< HEAD
-=======
-conn = MySQLdb.connect(
-user = 'i-icc',
-password = '',
-host = 'localhost',
-db = 'door_log')
-
->>>>>>> b07d39479daa008f1bc8b0d259770b86155adc46
 app = Flask(__name__)
 
 @app.route('/')
 def root():
-<<<<<<< HEAD
     n = request.args.get('n')
     n = 5 if n is None else int(n)
     r = json.loads(getJson(n))
@@ -42,21 +32,6 @@ def getJson(n = 20):
     host = 'localhost',
     db = 'door_log')
     n = request.args.get('n')
-=======
-    #n = request.query.get('n')
-    #n = 5 if n is None else int(n)
-    n = 5
-    r = json.loads(getJson())
-    #r = getJson(n)
-    return r
-    # return template("index",req=r)
-    #  return "<html><body>hello</body></html>"
-
-# curl http://192.168.1.16:8080/getR
-@app.route('/getJson')
-def getJson(n = 5):
-    #n = request.query.get('n')
->>>>>>> b07d39479daa008f1bc8b0d259770b86155adc46
     n = 5 if n is None else int(n)
     sql = f"SELECT * FROM door_record ORDER BY id DESC LIMIT {n};"
     cur = conn.cursor(MySQLdb.cursors.DictCursor)
@@ -72,11 +47,7 @@ def getJson(n = 5):
 
 def main():
     print('Server Start')
-<<<<<<< HEAD
     app.run(host='0.0.0.0',debug=True)
-=======
-    app.run(debug=True)
->>>>>>> b07d39479daa008f1bc8b0d259770b86155adc46
 
 def atExit():
     print("atExit")
