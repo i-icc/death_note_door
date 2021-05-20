@@ -15,12 +15,6 @@ def json_serial(obj):
         return str(obj)
     raise TypeError("Type %s not serializable" % type(obj))
 
-conn = MySQLdb.connect(
-user = 'i-icc',
-password = '',
-host = 'localhost',
-db = 'door_log')
-
 @route('/static/:path#.+#', name='static')
 def static(path):
     return static_file(path, root='static')
@@ -37,6 +31,11 @@ def root():
 # curl http://192.168.1.16:8080/getR
 @route('/getJson', method='GET')
 def getJson(n = 5):
+    conn = MySQLdb.connect(
+    user = 'i-icc',
+    password = '',
+    host = 'localhost',
+    db = 'door_log')
     n = request.query.get('n')
     n = 5 if n is None else int(n)
     sql = f"SELECT * FROM door_record ORDER BY id DESC LIMIT {n};"
