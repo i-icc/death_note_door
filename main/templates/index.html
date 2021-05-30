@@ -12,6 +12,9 @@
     <body>      
         <main>
         <h1>Door_Open_Log</h1>
+        {% if temps[0] != None %}
+		<p>温度:{{temps[1]}}°C 湿度:{{temps[0]}}%</p>
+	{% endif %}
 	<div class="container-fluid">
 	    <div class="row">
 		<div class="col-md">
