@@ -11,13 +11,19 @@
     </head>
     <body>      
         <main>
-        <h1>Door_Open_Log</h1>
-        {% if temps[0] != None %}
-		<p>温度:{{temps[1]}}°C 湿度:{{temps[0]}}%</p>
-	{% endif %}
+        <h1>現在の部屋情報</h1>
 	<div class="container-fluid">
 	    <div class="row">
 		<div class="col-md">
+			<form action="door.html" method="get">
+				<div>
+				データ数: 
+				<input type="number" name="n" placeholder="5" required>
+				</div>
+				<p>
+				<input type="submit" value="ログを見る"><input type="reset" value="リセット">
+				</p>
+					</form>
             <h3>Now Door</h3>
 		{% if req["log"][0]["is_open"] == 0 %}
 		<img src="https://4.bp.blogspot.com/-HP2xMvZI9gc/V2ubhMWexoI/AAAAAAAA7pU/DYF9XhceGi4N0JLn8KGkiCfnxITQjiHdACLcB/s800/door_close.png" title="close">
@@ -26,37 +32,21 @@
 		{% endif %}
 		</div>
 		<div class="col-md">
-	    <h3>Logs</h3>
-                <form>
+	    <h3>温湿度</h3>
+                <form action="temp.html" method="get">
 		    <div>
 			データ数: 
 			<input type="number" name="n" placeholder="5" required>
 			</div>
 		    <p>
-			<input type="submit" value="送信"><input type="reset" value="リセット">
+			<input type="submit" value="ログを見る"><input type="reset" value="リセット">
 		    </p>
                 </form>
-		<table class="table table-striped">
-    		    <tr>
-      			<th>日付</th>
-			<th>ドア情報</th>
-    		    </tr>
-           	    {% for log in req["log"] %}
-		    <tr>
-	        	<td>{{ log["date_at"] }}</td>
-			{% if log["is_open"] == 1 %}
-			<td>open</td>
-			{% else %}
-			<td>close</td>
-			{% endif %}
-		    </tr>
-	            {% endfor %}
-		</table>
+				<p>温度:{{temp}}°C </p>
+				<p>	湿度:{{humi}}%</p>
 		</div>
 	    </div>
         </div>
         </main>
-        <!-- load script files -->
-        <!-- script type="text/javascript" src="static/js/caller.js" charset="utf-8"></script -->
     </body>
 </html>
