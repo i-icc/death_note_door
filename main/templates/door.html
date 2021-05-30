@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>List</title>
+        <!-- load css files -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>      
+        <main>
+        <h1>Door_Open_Log</h1>
+        {% if temps[0] != None %}
+		<p>温度:{{temps[1]}}°C 湿度:{{temps[0]}}%</p>
+	{% endif %}
+	<div class="container-fluid">
+	    <div class="row">
+		<div class="col-md">
+            <h3>Now Door</h3>
+		{% if req["log"][0]["is_open"] == 0 %}
+		<img src="https://4.bp.blogspot.com/-HP2xMvZI9gc/V2ubhMWexoI/AAAAAAAA7pU/DYF9XhceGi4N0JLn8KGkiCfnxITQjiHdACLcB/s800/door_close.png" title="close">
+            	{% else %}
+		<img src="https://2.bp.blogspot.com/-6noe-4G5FNU/V2ubhr0UDKI/AAAAAAAA7pY/nHp2zGXHshkiwzUxYa5RQVf-pcwn31GSACLcB/s800/door_half_open.png" title="open">
+		{% endif %}
+		</div>
+		<div class="col-md">
+	    <h3>Logs</h3>
+                <form>
+		    <div>
+			データ数: 
+			<input type="number" name="n" placeholder="5" required>
+			</div>
+		    <p>
+			<input type="submit" value="送信"><input type="reset" value="リセット">
+		    </p>
+                </form>
+		<table class="table table-striped">
+    		    <tr>
+      			<th>日付</th>
+			<th>ドア情報</th>
+    		    </tr>
+           	    {% for log in req["log"] %}
+		    <tr>
+	        	<td>{{ log["date_at"] }}</td>
+			{% if log["is_open"] == 1 %}
+			<td>open</td>
+			{% else %}
+			<td>close</td>
+			{% endif %}
+		    </tr>
+	            {% endfor %}
+		</table>
+		</div>
+	    </div>
+        </div>
+        </main>
+        <!-- load script files -->
+        <!-- script type="text/javascript" src="static/js/caller.js" charset="utf-8"></script -->
+    </body>
+</html>
