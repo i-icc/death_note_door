@@ -24,7 +24,7 @@ def root():
     rr = json.loads(getJsonTemp(1))
     temp = rr["log"][0]["temp"]
     humi = rr["log"][0]["humi"]
-    return render_template("index.html",is_open=isopen,temp=temp,humi=humi)
+    return render_template("index.html",is_open=is_open,temp=temp,humi=humi)
 
 @app.route('/door_log/')
 def door_log():

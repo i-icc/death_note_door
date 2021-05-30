@@ -15,7 +15,8 @@
 	<div class="container-fluid">
 	    <div class="row">
 		<div class="col-md">
-			<form action="door.html" method="get">
+                    <h3>Now Door</h3>
+			<form action="/door_log" method="get">
 				<div>
 				データ数: 
 				<input type="number" name="n" placeholder="5" required>
@@ -24,8 +25,7 @@
 				<input type="submit" value="ログを見る"><input type="reset" value="リセット">
 				</p>
 					</form>
-            <h3>Now Door</h3>
-		{% if req["log"][0]["is_open"] == 0 %}
+		{% if is_open == 0 %}
 		<img src="https://4.bp.blogspot.com/-HP2xMvZI9gc/V2ubhMWexoI/AAAAAAAA7pU/DYF9XhceGi4N0JLn8KGkiCfnxITQjiHdACLcB/s800/door_close.png" title="close">
             	{% else %}
 		<img src="https://2.bp.blogspot.com/-6noe-4G5FNU/V2ubhr0UDKI/AAAAAAAA7pY/nHp2zGXHshkiwzUxYa5RQVf-pcwn31GSACLcB/s800/door_half_open.png" title="open">
@@ -33,7 +33,7 @@
 		</div>
 		<div class="col-md">
 	    <h3>温湿度</h3>
-                <form action="temp.html" method="get">
+                <form action="/temp_log" method="get">
 		    <div>
 			データ数: 
 			<input type="number" name="n" placeholder="5" required>

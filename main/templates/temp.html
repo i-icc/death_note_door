@@ -12,12 +12,17 @@
     <body>      
         <main>
         <h1>温湿度_Log</h1>
+	<form action="/" method="get">
+				<p>
+				<input type="submit" value="ホームに戻る">
+				</p>
+					</form>
 	<div class="container-fluid">
 	    <div class="row">
 		<div class="col-md">
             <h3>現在の温湿度</h3>
-			<p>温度:{{temp}}°C </p>
-			<p>	湿度:{{humi}}%</p>
+			<p>温度:{{req["log"][0]["temp"]}}°C </p>
+			<p>湿度:{{req["log"][0]["humi"]}}%</p>
 		</div>
 		<div class="col-md">
 	    <h3>Logs</h3>
@@ -42,6 +47,7 @@
 			    <td>{{ log["temp"] }}</td>
 			    <td>{{ log["humi"] }} </td>
 		    </tr>
+		    {% endfor %}
 		</table>
 		</div>
 	    </div>

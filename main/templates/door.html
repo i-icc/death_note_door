@@ -16,6 +16,11 @@
 	    <div class="row">
 		<div class="col-md">
             <h3>Now Door</h3>
+	<form action="/" method="get">
+				<p>
+				<input type="submit" value="ホームに戻る">
+				</p>
+					</form>
 		{% if req["log"][0]["is_open"] == 0 %}
 		<img src="https://4.bp.blogspot.com/-HP2xMvZI9gc/V2ubhMWexoI/AAAAAAAA7pU/DYF9XhceGi4N0JLn8KGkiCfnxITQjiHdACLcB/s800/door_close.png" title="close">
             	{% else %}

@@ -47,12 +47,12 @@ class Disp:
         self.font2 = ImageFont.truetype('/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc', 60)
 
     def draw(self,is_open,humi,temp):
-        image1 = Image.new("RGB", (self.disp.width, self.disp.height), "WHITE")
+        image1 = Image.new("RGB", (self.disp.width, self.disp.height), "GRAY")
         draw = ImageDraw.Draw(image1)
         if is_open:
             draw.text((30, 30), "OPEN", font = self.font2, fill = "BLUE")
         else:
-            draw.text((30, 30), "CLOSE", font = self.font2, fill = "BLUE")
+            draw.text((30, 30), "CLOSE", font = self.font2, fill = "RED")
         if not humi is None:
             draw.text((30, 140), f"temp:{temp:.1f}°C\nhumi:{humi:.1f}%", font = self.font, fill = "BLUE")
         self.disp.ShowImage(image1,0,0)
@@ -65,7 +65,7 @@ def observe():
     while True:
         result = door.update()
         humi, temp = sensor.read()
-        sql = f"INSERT INTO temp_record(humi,temp) VALUES (humi,temp);"
+        sql = f"INSERT INTO temp_record(humi,temp) VALUES ({humi:.2f},{temp:.2f});"
         cur.execute(sql)
         if result[0]:
             sql = f"INSERT INTO door_record(is_open) VALUES ('{result[1]}');"
