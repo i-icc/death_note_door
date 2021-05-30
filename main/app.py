@@ -43,16 +43,15 @@ def getJson(n = 20):
     r = json.dumps(res, default=json_serial)
     # r = HTTPResponse(status=200, body=retBody)
     # r.set_header('Content-Type', 'application/json')
-    conn.close()
     return r
 
 def main():
     print('Server Start')
     app.run(host='0.0.0.0',debug=True)
-    #app.run(host='192.168.1.1',debug=True)
 
 def atExit():
     print("atExit")
+    conn.close()
 
 if __name__ == '__main__':
     atexit.register(atExit)
